@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{"BurgerType":"Veggie","BurgerSize":"Small","BurgerCost":4},{"BurgerType":"Mozarilla","BurgerSize":"Medium","BurgerCost":5},{"BurgerType":"Cheese","BurgerSize":"Large","BurgerCost":7}];
+  div(class="container-fluid")
+    div(class="row")
+    each item in results
+      div(class="col-sm-2" width="200px") Burger Type:#{item.BurgerType}, Burger Size:#{item.BurgerSize}, Burger Cost:#{item.BurgerCost}
