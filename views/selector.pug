@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ["blackbeanburger","cheeseburger","mushroomburger","pumpkinseed","veggieburger"];
+  - for(i=0;i<3;i++) {
+     - var randNum = Math.floor(Math.random()*5) ;
+     img(src=`./images/${image_names[randNum]}.jpg` alt="" style='width:300px; height:300px;')
+
+  -}
