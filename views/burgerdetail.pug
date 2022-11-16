@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let burgerid = toShow._id
+  - let BurgerType = toShow.BurgerType
+  - let BurgerSize = toShow.BurgerSize
+  - let BurgerCost = toShow.BurgerCost
+  div
+    div.row
+      div(class='burgerAttr mr-3') Burger ID is:
+      div #{burgerid}
+    div.row
+      div(class='burgerAttr mr-3') Burger Type is:
+      div #{BurgerType}
+    div.row
+      div(class='burgerAttr mr-3') Burger Size is:
+      div #{BurgerSize}
+    div.row
+      div(class='burgerAttr mr-3') Burger Costt is:
+      div #{BurgerCost}

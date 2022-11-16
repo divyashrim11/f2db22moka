@@ -1,0 +1,54 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let burgerid = toShow._id 
+    - let BurgerType = toShow.BurgerType 
+    - let BurgerSize = toShow.BurgerSize
+    - let BurgerCost = toShow.BurgerCost
+    - let actionid = "/resource/burgers/" + burgerid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='burgerAttr mr-3') Burger ID is: 
+        div #{burgerid} 
+      div.row 
+        div(class='burgerAttr mr-3') Burger Type is: 
+        div #{BurgerType} 
+      div.row 
+        div(class='burgerAttr mr-3') Burger Size is: 
+        div #{BurgerSize} 
+      div.row 
+        div(class='burgerAttr mr-3') Burger Cost is: 
+        div #{BurgerCost}
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the burgers collection 
+      window.location.href='/burgers' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/burgers' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
+ 

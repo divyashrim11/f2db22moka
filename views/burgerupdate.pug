@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  - let burgerid = toShow._id
+  - let BurgerType = toShow.BurgerType
+  - let BurgerSize = toShow.BurgerSize
+  - let BurgerCost = toShow.BurgerCost
+  
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{burgerid}
+  - let actionid = "/resource/burgers/" + burgerid
+  form(id='BurgerForm', action= actionid, method="PUT")
+    div.form-group
+        label.burgerAttr(for='BurgerType') Burger Type
+        input#BurgerType(type='text', name='BurgerType', value= BurgerType )
+    div.form-group
+        label.burgerAttr(for='BurgerSize') Burger Size
+        input#BurgerSize(type='text', name='BurgerSize', value= BurgerSize )
+    div.form-group
+        label.burgerAttr(for='BurgerCost') Burger Cost
+        input#BurgerCost(type='number', name='BurgerCost', value= BurgerCost )
+    input(type="submit")
+    
+
+  script.
+    document.forms['BurgerForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });

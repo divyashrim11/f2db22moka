@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+
+  form(id='BurgerForm', action="/resource/burgers", method="POST")
+    div.form-group
+        label.burgerAttr(for='BurgerType') Burger Type
+        input#BurgerType(type='text', name='BurgerType')
+    div.form-group
+        label.burgerAttr(for='BurgerSize') Burger Size
+        input#BurgerSize(type='text', name='BurgerSize')
+    div.form-group
+        label.burgerAttr(for='BurgerCost') Burger Cost
+        input#BurgerCost(type='number', name='BurgerCost')
+    input(type="submit")
+
+  script.
+    document.forms['BurgerForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });
