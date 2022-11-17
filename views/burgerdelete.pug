@@ -1,7 +1,7 @@
 extends layout 
  
 block content 
-  h1= title 
+  h1(class='container-fluid p-5 bg-primarary text-success text-center',  style='background-color: rgb(244, 229, 255)')= title 
  
   if (toShow == null) 
     h2 No instance to delete 
@@ -12,18 +12,18 @@ block content
     - let BurgerCost = toShow.BurgerCost
     - let actionid = "/resource/burgers/" + burgerid 
     script let actionid = "#{actionid}" 
-    div 
+    div(class='justify-content p-2 bg-primarary text-center text-danger', style='background-color: rgb(244, 229, 255)') 
       div.row 
-        div(class='burgerAttr mr-3') Burger ID is: 
+        div(class='p-2 flex-fill burgerAttr mr-3') Burger ID is: 
         div #{burgerid} 
       div.row 
-        div(class='burgerAttr mr-3') Burger Type is: 
+        div(class='p-2 flex-fill burgerAttr mr-3') Burger Type is: 
         div #{BurgerType} 
       div.row 
-        div(class='burgerAttr mr-3') Burger Size is: 
+        div(class='p-2 flex-fill burgerAttr mr-3') Burger Size is: 
         div #{BurgerSize} 
       div.row 
-        div(class='burgerAttr mr-3') Burger Cost is: 
+        div(class='p-2 flex-fill burgerAttr mr-3') Burger Cost is: 
         div #{BurgerCost}
  
     button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 

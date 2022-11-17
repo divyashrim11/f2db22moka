@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1(class='container-fluid p-5 bg-primarary text-danger text-center', style= 'background-color:#1111')= title
   - let burgerid = toShow._id
   - let BurgerType = toShow.BurgerType
   - let BurgerSize = toShow.BurgerSize

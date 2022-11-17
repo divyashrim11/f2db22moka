@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1(class='container-fluid p-5 bg-primary text-warning text-center', style= 'background-color:gb(204, 229, 255)')= title
 
   form(id='BurgerForm', action="/resource/burgers", method="POST")
     div.form-group
